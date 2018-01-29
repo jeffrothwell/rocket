@@ -31,18 +31,18 @@ class RocketTest < Minitest::Test
   def test_liftoff_changes_flying_to_true_when_flying_is_false
     rocket = Rocket.new
     rocket.lift_off
-    assert rocket.flying?, "@flying should be true after lift_off"
+    assert rocket.flying?, "flying should be true after lift_off"
   end
 
   def test_liftoff_returns_true_when_flying_is_false
     rocket = Rocket.new
-    assert_equal(true, rocket.lift_off)
+    assert rocket.lift_off, "lift_off should return true if not already flying"
   end
 
   def test_liftoff_returns_false_when_flying_is_true
     rocket = Rocket.new
     rocket.lift_off
-    assert_equal(false, rocket.lift_off)
+    refute rocket.lift_off, "lift_off should return false if already flying"
   end
 
   def test_land_sets_flying_to_false_if_already_flying
@@ -55,7 +55,7 @@ class RocketTest < Minitest::Test
   def test_land_returns_true_if_already_flying
     rocket = Rocket.new
     rocket.lift_off
-    assert_equal(true, rocket.land)
+    assert rocket.land, "land should return true if already flying"
   end
 
   def test_land_returns_false_if_not_already_flying
